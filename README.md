@@ -1,4 +1,4 @@
-This is simple demonstration of proficiency with python. The file named Firm Valuation Code.ipynb is a string of code that will compute a firm valuation at time zero if provided with a csv of an income statement and balance sheet. 
+This is simple demonstration of proficiency with Python. The file named Firm Valuation Code.ipynb is a string of code that will compute a firm valuation at time zero if provided with a csv of an income statement and balance sheet. 
 The file is compatible with python, and was written specifically with the Jupyter Notebook.
 This file requires the installation of Pandas, a commonly used data analytics program within Python.
 This code is functional as of 12/19/2023, but may require tweaking as it does upload from html sources.
