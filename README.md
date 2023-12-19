@@ -7,4 +7,5 @@ Additionally, this software does not evaluate beta, and requires that beta is ca
 Finally, csv documents were retrieved from https://site.financialmodelingprep.com/
 
 Best,
+
 Tyler
