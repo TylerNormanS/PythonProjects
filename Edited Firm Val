@@ -1,0 +1,31 @@
+import pandas as pd
+z=pd.read_csv(input('income_statement_goes_here.csv'))
+z.columns=['1','2','3','4','5','6','7']
+EBITDA=(z.at[16,'3']+z.at[16,'4']+z.at[16,'5']+z.at[16,'6']+z.at[16,'7'])/5
+DA=(z.at[15,'3']+z.at[15,'4']+z.at[15,'5']+z.at[15,'6']+z.at[15,'7'])/5
+Tc=.21 #Corporate Tax Rate
+y=pd.read_csv(input('balance_sheet.csv goes here'))
+y.columns=['8','9','10','11','12','13','14']
+NWCo=(y.at[8,'10']-y.at[30,'10'])
+NWCi=(y.at[8,'11']-y.at[30,'11'])
+NWC=NWCo-NWCi
+NCapS=(y.at[11,'10']-y.at[11,'11']+DA)
+CFAdj=EBITDA*(1-Tc)+DA-NWC-NCapS
+CFAdj
+L=(y.at[41,'10']+y.at[41,'11']+y.at[41,'12']+y.at[41,'13']+y.at[41,'14'])/5
+E=(y.at[48,'10']+y.at[48,'11']+y.at[48,'12']+y.at[48,'13']+y.at[48,'14'])/5
+A=(y.at[22,'10']+y.at[22,'11']+y.at[22,'12']+y.at[22,'13']+y.at[22,'14'])/5
+We=E/A
+Wd=L/A
+url="https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value_month=202312"
+x=pd.read_html(url)
+Treas=x[0]
+Treas.columns=['15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37']
+Rf=(Treas.at[11,'31']+Treas.at[11,'32']+Treas.at[11,'33']+Treas.at[11,'34']+Treas.at[11,'35']+Treas.at[11,'36']+Treas.at[11,'37'])/7
+Re=(.0594*float(input("Enter Beta")))+(Rf/100)
+Rd=Rf/100 #Used Risk-Free Rate as the Cost of Debt here
+WACC=(We*Re)+((Wd*Rd)*(1-Tc))
+WACC
+g=float(input("Enter Desired Growth Rate"))
+V0=(CFAdj*(1+g))/(WACC-g)
+print("Firm Valuation:$",V0)
